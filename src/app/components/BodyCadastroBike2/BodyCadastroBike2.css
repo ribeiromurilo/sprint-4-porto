@@ -1,36 +1,30 @@
 .container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    background-color: #08a4ff;
-    min-height: 70vh;
-    padding: 160px;
+    background-color:  #08a4ff;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    text-align: center;
+    max-width: 700px; 
+    margin: 0 auto; 
+}
+
+h1 {
+    text-align: center;
+    color: #353535;
     max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto;
 }
 
-
-.content h1 {
-    text-align: center;
+p {
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
 }
-
-.content h2 {
-    text-align: center;
-    font-weight: normal;
-}
-
-.content p {
-    text-align: center;
-    margin-top: 20px;
-}
-
 
 .button-upload {
     background-color: #E8E8E8;
@@ -40,7 +34,8 @@
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 20px;
+    display: block;
+    margin: 20px auto; 
 }
 
 .button-enviar {
@@ -54,7 +49,7 @@
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 20px;
+    margin: 20px auto; 
 }
 
 .enviar {

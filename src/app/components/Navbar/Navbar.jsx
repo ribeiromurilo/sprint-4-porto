@@ -56,16 +56,6 @@ function Navbar() {
                   Vistoria
                 </Link>
               </li>
-  
-              <li className='nav-bttn'>
-                <Link
-                  href='/Login'
-                  className='nav-links-mobile'
-                  onClick={closeMobileMenu}
-                >
-                  Entrar
-                </Link>
-              </li>
             </ul>
             {button && <Button buttonStyle='btn--outline'>Entrar</Button>}
           </div>

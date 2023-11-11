@@ -20,7 +20,7 @@ function Cards() {
             <ul className='cards__items'>
               <CardItem
                 src='img/img-1.jpg'
-                text='Danos à bike'
+                text='Danos físicos à bike'
                 label='Cobertura'
                 path='/entrar'
               />

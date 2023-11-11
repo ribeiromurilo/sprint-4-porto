@@ -11,7 +11,7 @@ function Footer() {
           Lucas Pinheiro de Melo – RM: 97707 <br />
           Murilo Ribeiro Valério da Silva – RM: 550858 <br />
         </p>
-        <a href="https://www.github.com/ribeiromurilo/SPRINT3" rel="noreferrer" target="_blank">Repositório</a>
+        <a href="https://github.com/ribeiromurilo/SPRINT4" rel="noreferrer" target="_blank">Repositório</a>
       </section>
     </div>
   );

@@ -5,9 +5,9 @@ import BodyCadastroBike from "../components/BodyCadastroBike/BodyCadastroBike";
 export default function CadastroBike() {
   return (
     <>
-      <Navbar/>
-      <BodyCadastroBike/>
-      <Footer/>
+      <Navbar />
+      <BodyCadastroBike />
+      <Footer />
     </>
-  )
+  );
 }
