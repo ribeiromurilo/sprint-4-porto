@@ -33,6 +33,11 @@ a {
   font-size: 20px;
 }
 
+.footer-nomes-heading strong {
+  display: block;
+  margin-bottom: 7px;
+}
+
 .footer-nomes-text {
   margin-bottom: 24px;
   font-size: 20px;
