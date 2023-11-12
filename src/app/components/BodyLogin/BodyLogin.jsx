@@ -27,7 +27,7 @@ const BodyLogin = () => {
         type: "password",
         placeholder: "Senha",
         errorMessage:
-          "Sua senha deve conter pelo menos 8 caracteres e incluir 1 letra, 1 número e 1 caractere especial!",
+          "Sua senha deve conter pelo menos 8 caracteres com 1 letra, 1 número e 1 caractere especial!",
         label: "Senha",
         pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
         required: true,
