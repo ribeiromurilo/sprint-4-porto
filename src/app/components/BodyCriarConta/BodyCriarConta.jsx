@@ -1,12 +1,11 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import "./BodyCriarConta.css";
 import FormInput from "../FormInput/FormInput";
 import "../FormInput/FormInput.css";
 
 const BodyCriarConta = () => {
-  const isBrowser = typeof window !== 'undefined';
-  const [values, setValues] = isBrowser ? React.useState({
+  const [values, setValues] = useState({
     nome: "",
     email: "",
     nascimento: "",
@@ -18,7 +17,7 @@ const BodyCriarConta = () => {
     cidade: "",
     senha: "",
     confirmarSenha: "",
-  }) : {};
+  });
 
   const inputs = [
     {
@@ -136,14 +135,12 @@ const BodyCriarConta = () => {
         body: JSON.stringify({
           cliente: {
             nome: values.nome,
-            email: values.email,
-            nascimento: values.nascimento,
             cpf: values.cpf,
-            telefone: values.telefone,
-            endereco: values.endereco,
             cep: values.cep,
-            estado: values.estado,
-            cidade: values.cidade,
+            telefone: values.telefone,
+            email: values.email,
+            logradouro: values.endereco,
+            dataNascimento: values.nascimento,
             senha: values.senha
           },
           bicicleta: {
@@ -164,6 +161,7 @@ const BodyCriarConta = () => {
 
       if (response.ok) {
         console.log('Cotação criada com sucesso!');
+        
       } else {
         console.error('Falha ao criar a cotação');
       }
