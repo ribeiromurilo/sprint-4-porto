@@ -1,6 +1,4 @@
-'use client';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import "./BodyCriarConta.css";
 import FormInput from "../FormInput/FormInput";
 import "../FormInput/FormInput.css";
@@ -12,7 +10,7 @@ const BodyCriarConta = () => {
     nascimento: "",
     cpf: "",
     telefone: "",
-    endereço: "",
+    endereco: "",
     cep: "",
     estado: "",
     cidade: "",
@@ -26,8 +24,7 @@ const BodyCriarConta = () => {
       name: "nome",
       type: "text",
       placeholder: "Nome completo",
-      errorMessage:
-        "Verifique seu nome!",
+      errorMessage: "Verifique seu nome!",
       label: "Nome",
       pattern: "^[A-Za-z0-9]{3,16}$",
       required: true,
@@ -77,7 +74,7 @@ const BodyCriarConta = () => {
     },
     {
       id: 7,
-      name: "endereço",
+      name: "endereco",
       type: "text",
       placeholder: "Endereço",
       errorMessage: "O endereço está incorreto!",
@@ -89,7 +86,7 @@ const BodyCriarConta = () => {
       name: "estado",
       type: "text",
       placeholder: "Estado",
-      errorMessage: "Verique se seu estado está correto!",
+      errorMessage: "Verifique se seu estado está correto!",
       label: "Estado",
       required: true,
     },
@@ -125,8 +122,51 @@ const BodyCriarConta = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:8080/seguro-bike/cotacao/cotar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cliente: {
+            nome: values.nome,
+            cpf: values.cpf,
+            cep: values.cep,
+            telefone: values.telefone,
+            email: values.email,
+            logradouro: values.endereco,
+            dataNascimento: values.nascimento,
+            senha: values.senha
+          },
+          bicicleta: {
+            modelo: "X3000",
+            cor: "AZUL",
+            marca: "Caloi",
+            ano: "2023",
+            tipo: "LAZER",
+            numeroSerie: "123456789",
+            valor: 3000.0,
+            equipamentoAdicional: false
+          },
+          assistencia: "Básica",
+          inicioVigencia: "01/06/2023",
+          finalVigencia: "01/06/2024"
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Cotação criada com sucesso!');
+        
+      } else {
+        console.error('Falha ao criar a cotação');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+    }
   };
 
   const onChange = (e) => {
@@ -145,9 +185,7 @@ const BodyCriarConta = () => {
             onChange={onChange}
           />
         ))}
-        <button>
-          <Link href="/perfil" className="enviar">Cadastrar</Link>
-        </button>
+        <button type="submit">Cadastrar</button>
       </form>
     </div>
   );

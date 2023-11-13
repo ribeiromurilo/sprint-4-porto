@@ -6,6 +6,7 @@ import './BodyCadastroBike2.css';
 const BodyCadastroBike2 = () => {
   const fileInputRef = useRef(null);
   const [photoSelected, setPhotoSelected] = useState([false, false, false, false]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleImageUpload = (position) => {
     fileInputRef.current.click();
@@ -15,6 +16,35 @@ const BodyCadastroBike2 = () => {
       );
       setPhotoSelected(updatedPhotos);
     };
+  };
+
+  const realizarVistoria = async (imageData) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', imageData);
+
+      const response = await fetch('http://localhost:8080/seguro-bike/vistoria/realizar', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const status = await response.json();
+        // Lidar com o status da vistoria retornado
+      } else {
+        throw new Error('Falha ao realizar a vistoria');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar a imagem para vistoria:', error.message);
+      setErrorMessage('Ocorreu um erro ao enviar a imagem para vistoria. Por favor, tente novamente.');
+    }
+  };
+
+  const handleEnviarClick = async () => {
+    // Dados da imagem para função de realizar vistoria
+    const imageData = imageDataHere;
+
+    await realizarVistoria(imageData);
   };
 
   return (
@@ -72,9 +102,10 @@ const BodyCadastroBike2 = () => {
               ref={fileInputRef}
               style={{ display: 'none' }}
             />
-            <button className="button-enviar">
+            <button className="button-enviar" onClick={handleEnviarClick}>
               <Link href="/Vistoria" className="enviar">Enviar</Link>
             </button>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
         </div>
       </div>
