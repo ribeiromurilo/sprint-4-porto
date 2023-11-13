@@ -106,9 +106,9 @@ p {
 }
 
 .bike-4 {
-    max-width: 150%;
+    max-width: 200px;
     height: auto;
-    width: 220px;
+    width: 100%;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 0px;
@@ -132,6 +132,11 @@ p {
     margin-right: auto;
     margin-top: 0px;
 }
+
+.error-message {
+    color: red;
+}
+
 
 @media (max-width: 768px) {
     .container {

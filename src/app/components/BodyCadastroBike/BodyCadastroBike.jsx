@@ -74,6 +74,13 @@ const BodyCadastroBike = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const allFieldsFilled = Object.values(values).every((value) => value.trim() !== '');
+
+    if (!allFieldsFilled) {
+      console.error('Por favor, preencha todos os campos.');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/seguro-bike/cotacao/cotar-bicicleta', {
         method: 'POST',
@@ -106,6 +113,8 @@ const BodyCadastroBike = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const allFieldsFilled = Object.values(values).every((value) => value.trim() !== '');
+
   return (
     <div className="cadastro-bike">
       <form onSubmit={handleSubmit}>
@@ -118,9 +127,10 @@ const BodyCadastroBike = () => {
             onChange={onChange}
           />
         ))}
-        <button type="submit">Cadastrar Bicicleta</button>
-        <Link href="/CadastroBike2">
-          <button>Continuar</button>
+        <Link href={allFieldsFilled ? "/CadastroBike2" : "#"}>
+          <button type="submit" disabled={!allFieldsFilled}>
+            Continuar
+          </button>
         </Link>
       </form>
     </div>
