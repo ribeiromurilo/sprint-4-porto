@@ -1,8 +1,22 @@
-import React from 'react';
+'use client';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import './BodyCadastroBike2.css';
 
 const BodyCadastroBike2 = () => {
+  const fileInputRef = useRef(null);
+  const [photoSelected, setPhotoSelected] = useState([false, false, false, false]);
+
+  const handleImageUpload = (position) => {
+    fileInputRef.current.click();
+    fileInputRef.current.onchange = () => {
+      const updatedPhotos = photoSelected.map((selected, index) =>
+        index === position - 1 ? true : selected
+      );
+      setPhotoSelected(updatedPhotos);
+    };
+  };
+
   return (
     <div className="blue-background">
       <div className="white-container">
@@ -23,33 +37,41 @@ const BodyCadastroBike2 = () => {
           <div className="bike-imgs">
             <p>Seguindo as imagens, envie uma foto de sua bike de acordo com as posições:</p>
             <div className="bike-row-container">
-              <div className="bike-img">
-                <img src="/img/bike-1.png" alt="Bike" className="bike" />
-                <div className="center-button">
-                  <button className="button-upload">Foto 1</button>
+              {[1, 2].map((position) => (
+                <div className="bike-img" key={position}>
+                  <img src={`/img/bike-${position}.png`} alt={`Bike ${position}`} className="bike" />
+                  <div className="center-button">
+                    <button
+                      className={`button-upload ${photoSelected[position - 1] ? 'selected' : ''}`}
+                      onClick={() => handleImageUpload(position)}
+                    >
+                      {photoSelected[position - 1] ? 'Foto Selecionada' : `Foto ${position}`}
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="bike-img">
-                <img src="/img/bike-2.png" alt="Bike" className="bike" />
-                <div className="center-button">
-                  <button className="button-upload">Foto 2</button>
-                </div>
-              </div>
+              ))}
             </div>
             <div className="bike-row-container">
-              <div className="bike-img">
-                <img src="/img/bike-3.png" alt="Bike" className="bike-3" />
-                <div className="center-button">
-                  <button className="button-upload">Foto 3</button>
+              {[3, 4].map((position) => (
+                <div className="bike-img" key={position}>
+                  <img src={`/img/bike-${position}.png`} alt={`Bike ${position}`} className={`bike-${position}`} />
+                  <div className="center-button">
+                    <button
+                      className={`button-upload ${photoSelected[position - 1] ? 'selected' : ''}`}
+                      onClick={() => handleImageUpload(position)}
+                    >
+                      {photoSelected[position - 1] ? 'Foto Selecionada' : `Foto ${position}`}
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="bike-img">
-                <img src="/img/bike-4.png" alt="Bike" className="bike-4" />
-                <div className="center-button">
-                  <button className="button-upload-4">Foto 4</button>
-                </div>
-              </div>
+              ))}
             </div>
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+            />
             <button className="button-enviar">
               <Link href="/Vistoria" className="enviar">Enviar</Link>
             </button>
