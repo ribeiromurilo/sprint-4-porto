@@ -143,16 +143,6 @@ const BodyCriarConta = () => {
             dataNascimento: values.nascimento,
             senha: values.senha
           },
-          bicicleta: {
-            modelo: "X3000",
-            cor: "AZUL",
-            marca: "Caloi",
-            ano: "2023",
-            tipo: "LAZER",
-            numeroSerie: "123456789",
-            valor: 3000.0,
-            equipamentoAdicional: false
-          },
           assistencia: "Básica",
           inicioVigencia: "01/06/2023",
           finalVigencia: "01/06/2024"
@@ -161,7 +151,6 @@ const BodyCriarConta = () => {
 
       if (response.ok) {
         console.log('Cotação criada com sucesso!');
-        
       } else {
         console.error('Falha ao criar a cotação');
       }

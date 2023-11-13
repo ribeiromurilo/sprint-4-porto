@@ -72,8 +72,34 @@ const BodyCadastroBike = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/seguro-bike/cotacao/cotar-bicicleta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bicicleta: {
+            numeroSerie: values.numeroDeSerie,
+            marca: values.marca,
+            modelo: values.modelo,
+            valor: values.valor,
+            ano: values.ano,
+            cor: values.cor,
+          },
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Bicicleta cadastrada com sucesso!');
+      } else {
+        console.error('Falha ao cadastrar a bicicleta');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+    }
   };
 
   const onChange = (e) => {
@@ -92,6 +118,7 @@ const BodyCadastroBike = () => {
             onChange={onChange}
           />
         ))}
+        <button type="submit">Cadastrar Bicicleta</button>
         <Link href="/CadastroBike2">
           <button>Continuar</button>
         </Link>
